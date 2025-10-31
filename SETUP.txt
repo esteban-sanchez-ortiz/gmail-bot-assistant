@@ -1,0 +1,53 @@
+Gmail Bot Assistant - Quick Setup Guide
+========================================
+
+1. Gmail API Credentials
+-------------------------
+a. Go to: https://console.cloud.google.com/
+b. Create new project or select existing one
+c. Enable Gmail API:
+   - Search "Gmail API" in the search bar
+   - Click "Enable"
+d. Create OAuth 2.0 credentials:
+   - Go to "Credentials" (left sidebar)
+   - Click "Create Credentials" → "OAuth client ID"
+   - If prompted, configure OAuth consent screen:
+     * Choose "External" user type
+     * Fill in app name, email
+     * Add test users (your email)
+   - Choose "Desktop app" as application type
+   - Name it "Gmail Bot Assistant"
+   - Download JSON file
+e. Save downloaded file as "credentials.json" in project root
+
+2. Install Ollama
+-----------------
+macOS:    brew install ollama
+Linux:    curl -fsSL https://ollama.com/install.sh | sh
+Windows:  Download from https://ollama.com/download
+
+3. Pull Embedding Model
+------------------------
+ollama pull nomic-embed-text
+
+4. Run Setup Script
+-------------------
+./setup.sh
+
+This will:
+- Create virtual environment
+- Install dependencies
+- Verify Ollama installation
+- Pull embedding model
+- Create .env file
+
+5. Start Using
+--------------
+source venv/bin/activate
+ollama serve  # In separate terminal
+python cli.py organize --help
+
+First Run:
+- Browser will open for Gmail authentication
+- Grant permissions
+- token.json will be created automatically
